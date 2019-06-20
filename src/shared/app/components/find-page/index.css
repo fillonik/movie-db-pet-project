@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.header {
+    padding: 10px 20px;
+    display: flex;
+    justify-items: center;
+}
+
+.leftSide {
+    position: relative;
+    max-width: 1440px;
+    flex: 60%;
+}
+
+.rightSide {
+    flex: 40%;
+    height: 100%;
+    overflow-x: auto;
+}
+
+.resultsContainer {
+    height: calc(100% - 101px);
+    overflow-x: auto;
+}

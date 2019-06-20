@@ -1,0 +1,44 @@
+.container {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.container:hover {
+    background-color: #eee;
+}
+
+.selected, .selected:hover {
+    background-color: #dedede;
+}
+
+
+.header {
+    display: flex;
+}
+
+.title {
+    flex: 1;
+    font-size: 22px;
+    line-height: 18px;
+}
+
+.rating {
+    flex: 0;
+}
+
+.origTitle {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.year {
+    color: #333333;
+    font-size: 16px;
+}
+
+.description {
+    font-size: 11px;
+    color: #333;
+    text-align: justify;
+}

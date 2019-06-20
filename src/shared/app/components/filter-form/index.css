@@ -1,0 +1,28 @@
+.formContainer {
+    flex: 1;
+    margin: 0 auto;
+}
+
+.filmNameField {
+    width: calc(100% - 24px);
+    font-size: 18px;
+    padding: 5px 10px;
+    outline: 0;
+    border: 1px solid #cccccc;
+}
+
+.fieldError {
+    background-color: #FFC9C1;
+}
+
+.filtersContainer {
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 10px;
+}
+
+.filtersContainer > div {
+    flex: 1;
+    margin-right: 10px;
+}

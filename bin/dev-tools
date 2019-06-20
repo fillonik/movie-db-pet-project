@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const webpack = require('../webpack/dist/index');
+const util = require('../webpack/dist/utils');
+var args = process.argv[2];
+
+switch (args) {
+  case 'lint': startLint(); break;
+  case 'start': startLint().then(() =>{
+    webpack.webpackDevProcess();
+  }).catch(saySomething); break;
+}
+
+function startLint() {
+  return new Promise((resolve, reject) => {
+    const command = util.spawnCommand('node_modules/tslint/bin/tslint', ["src/**/*.ts", "src/**/*.tsx", "--project", "./tsconfig.json"]);
+    command.on('close', (exitCode) => {
+      exitCode === 0 ? resolve() : reject(exitCode);
+    });
+  });
+}
+
+function saySomething() {
+  const id = Math.round(Math.random() * phrases.length);
+  console.log(phrases[id]);
+}
+
+const phrases = [
+  'Пссс... пофиксить бы ;)',
+  'Тут такое ^^^',
+  'o_O',
+  'Баги не пройдут!'
+];

@@ -1,0 +1,19 @@
+.container {
+    white-space: nowrap;
+}
+
+.star {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url('./assets/star.svg') no-repeat;
+    background-size: contain;
+}
+
+.starYellow {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url('./assets/star-yellow.svg') no-repeat;
+    background-size: contain;
+}
