@@ -40,7 +40,7 @@ export const searchMovieApiModel = (params: ISearchMovieParams): IApiSettings =>
     return {
         hostname: API_HOST,
         method: 'GET',
-        path: `/3/search/movie?api_key=${API_KEY}&language=ru-Ru&query=${params.query}${page}`,
+        path: `/3/search/movie?api_key=${API_KEY}&language=ru-Ru&query=${encodeURIComponent(params.query)}${page}`,
         protocol: 'https',
     };
 };
