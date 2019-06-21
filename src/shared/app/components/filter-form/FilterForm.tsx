@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactElement } from 'react';
+import { ReactElement, SyntheticEvent } from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import { AnyAction } from 'redux';
@@ -64,6 +64,7 @@ export class FilterForm extends React.Component<
         this.updateGenreHandler = this.updateGenreHandler.bind(this);
         this.updateYearHandler = this.updateYearHandler.bind(this);
         this.updateRatingHandler = this.updateRatingHandler.bind(this);
+        this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
 
     public findClickHanler() {
@@ -76,33 +77,41 @@ export class FilterForm extends React.Component<
 
     public render() {
         return <div className={styles.formContainer}>
-            <input type={'text'}
+            <form onSubmit={this.onSubmitHandler}>
+                <input type={'text'}
                    className={`${styles.filmNameField} ${this.state.queryError ? styles.fieldError : undefined}`}
                    value={this.props.filterQuery}
                    placeholder={'Введите название фильма'}
                    onChange={this.updateQueryHandler}
-            />
-            <div className={styles.filtersContainer}>
-                <Select isClearable={true}
-                        onChange={this.updateGenreHandler}
-                        placeholder={'Жанр'}
-                        options={this.getGenresOptions()}
-                        value={this.getSelectedGenre(this.props.filterGenre)}
                 />
-                <Select isClearable={true}
-                        onChange={this.updateYearHandler}
-                        placeholder={'Год'}
-                        options={this.getYearsOptions()}
-                        value={this.getSelectedYear(this.props.filterYear)}/>
-                <Select isClearable={true}
-                        onChange={this.updateRatingHandler}
-                        placeholder={'Рейтинг'}
-                        isSearchable={false}
-                        options={this.getRatingOptions()}
-                        value={this.getSelectedRating(this.props.filterRating)}/>
-                <button onClick={this.findClickHanler}>Искать</button>
-            </div>
+                <div className={styles.filtersContainer}>
+                    <Select isClearable={true}
+                            onChange={this.updateGenreHandler}
+                            placeholder={'Жанр'}
+                            options={this.getGenresOptions()}
+                            value={this.getSelectedGenre(this.props.filterGenre)}
+                    />
+                    <Select isClearable={true}
+                            onChange={this.updateYearHandler}
+                            placeholder={'Год'}
+                            options={this.getYearsOptions()}
+                            value={this.getSelectedYear(this.props.filterYear)}/>
+                    <Select isClearable={true}
+                            onChange={this.updateRatingHandler}
+                            placeholder={'Рейтинг'}
+                            isSearchable={false}
+                            options={this.getRatingOptions()}
+                            value={this.getSelectedRating(this.props.filterRating)}/>
+                    <button onClick={this.findClickHanler}>Искать</button>
+                </div>
+            </form>
         </div>;
+    }
+
+    private onSubmitHandler(e: SyntheticEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        this.findClickHanler();
     }
 
     private getGenresOptions() {
